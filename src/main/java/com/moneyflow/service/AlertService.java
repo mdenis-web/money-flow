@@ -16,7 +16,7 @@ public class AlertService {
         List<String> alerts = new ArrayList<>();
 
         if (wallet.totalExpense() > wallet.totalIncome()) {
-            String message = "⚠ Expenses (" + Validator.format(wallet.totalExpense()) +
+            String message = "! Expenses (" + Validator.format(wallet.totalExpense()) +
                 ") exceed income (" + Validator.format(wallet.totalIncome()) + ")";
             alerts.add(message);
             logger.warn("ALERT: {}", message);
@@ -35,13 +35,13 @@ public class AlertService {
             double ratio = used / budget;
 
             if (remaining < 0) {
-                String message = "⚠ BUDGET EXCEEDED [" + category + "]: spent " +
+                String message = "! BUDGET EXCEEDED [" + category + "]: spent " +
                     Validator.format(used) + " of " + Validator.format(budget) +
                     ", overspend " + Validator.format(-remaining);
                 alerts.add(message);
                 logger.warn("ALERT: {}", message);
             } else if (ratio >= 0.8) {
-                String message = "⚠ 80% LIMIT REACHED [" + category + "]: spent " +
+                String message = "! 80% LIMIT REACHED [" + category + "]: spent " +
                     Validator.format(used) + " of " + Validator.format(budget);
                 alerts.add(message);
                 logger.warn("ALERT: {}", message);
@@ -49,7 +49,7 @@ public class AlertService {
         }
 
         if (wallet.balance() <= 0) {
-            String message = "⚠ Wallet balance: " + Validator.format(wallet.balance());
+            String message = "! Wallet balance: " + Validator.format(wallet.balance());
             alerts.add(message);
             logger.warn("ALERT: {}", message);
         }
