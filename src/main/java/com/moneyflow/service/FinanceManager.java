@@ -151,8 +151,8 @@ public class FinanceManager {
                     return new NotFoundException("Recipient not found: " + recipientLogin);
                 });
 
-            String senderCat = "Transfer → " + recipientLogin;
-            String recCat = "Transfer ← " + currentUser.getLogin();
+            String senderCat = "Transfer -> " + recipientLogin;
+            String recCat = "Transfer <- " + currentUser.getLogin();
 
             currentUser.getWallet().addExpense(new Expense(senderCat, amount));
             recipient.getWallet().addIncome(new Income(recCat, amount));
